@@ -38,6 +38,7 @@
   }
 
   const selectorsByHost = {
+    "scholar.google.com": [".gs_ri .gs_a", ".gsc_a_t .gs_gray"],
     "ieeexplore.ieee.org": [".description > a[href*='/xpl/']"],
     "dblp.org": ["cite a span[itemprop='isPartOf'] > span[itemprop='name']"],
     "dblp.uni-trier.de": ["cite a span[itemprop='isPartOf'] > span[itemprop='name']"],
@@ -65,11 +66,40 @@
     return [];
   };
 
+  const findScholarMatches = (rawText) => {
+    const parts = String(rawText ?? "").split(/\s+[-–—]\s+/u);
+    const venueParts = parts.length >= 3 ? parts.slice(1, -1) : [rawText];
+
+    for (const venuePart of venueParts) {
+      const candidate = String(venuePart ?? "")
+        .replace(/[,;]?\s*(?:19|20)\d{2}\b.*$/u, "")
+        .replace(/^[\s.…·]+|[\s.…·]+$/gu, "")
+        .trim();
+      if (!candidate) continue;
+
+      const exact = findMatches(candidate);
+      if (exact.length) return exact;
+
+      const normalized = canonicalName(candidate).replace(/^(?:of|in) the\s+/u, "");
+      const wordCount = normalized.split(" ").filter(Boolean).length;
+      if (normalized.length < 20 || wordCount < 3) continue;
+
+      const partial = unique(catalog.filter((entry) => {
+        const name = canonicalName(entry.name);
+        return name.includes(normalized) || normalized.includes(name);
+      }));
+      const distinctNames = new Set(partial.map((entry) => canonicalName(entry.name)));
+      if (distinctNames.size === 1) return partial;
+    }
+    return [];
+  };
+
   if (globalThis.__CCF_LENS_TEST__) {
     globalThis.__CCF_LENS_API__ = Object.freeze({
       canonicalName,
       canonicalAbbreviation,
-      findMatches
+      findMatches,
+      findScholarMatches
     });
   }
 
@@ -94,7 +124,10 @@
       const text = element.textContent?.trim() ?? "";
       if (!text || observedText.get(element) === text) continue;
       observedText.set(element, text);
-      renderBadge(element, findMatches(text));
+      const matches = location.hostname === "scholar.google.com"
+        ? findScholarMatches(text)
+        : findMatches(text);
+      renderBadge(element, matches);
     }
   };
 

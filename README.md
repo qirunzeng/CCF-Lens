@@ -1,6 +1,6 @@
 # CCF Lens for Safari
 
-CCF Lens is an independently implemented Safari Web Extension that labels venues on ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
+CCF Lens is an independently implemented Safari Web Extension that labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
 
 ## Clean implementation
 

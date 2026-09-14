@@ -14,7 +14,7 @@ struct CCFLensApp: App {
 }
 
 private struct SetupView: View {
-    @State private var message = "启用后，CCF Lens 会在 ACM、IEEE Xplore 和 DBLP 的刊物名称旁显示 CCF 等级。"
+    @State private var message = "启用后，CCF Lens 会在 Google Scholar、ACM、IEEE Xplore 和 DBLP 的刊物名称旁显示 CCF 等级。"
 
     var body: some View {
         VStack(spacing: 20) {

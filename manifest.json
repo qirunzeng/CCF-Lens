@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CCF Lens",
   "version": "1.0.0",
-  "description": "在 ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 推荐等级。",
+  "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 推荐等级。",
   "icons": {
     "16": "WebExtension/icons/icon-16.png",
     "32": "WebExtension/icons/icon-32.png",
@@ -12,6 +12,7 @@
   "content_scripts": [
     {
       "matches": [
+        "https://scholar.google.com/*",
         "https://dl.acm.org/*",
         "https://ieeexplore.ieee.org/*",
         "https://dblp.org/*",

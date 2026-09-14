@@ -42,3 +42,24 @@ test("preserves cross-list ambiguity instead of overwriting it", () => {
 test("does not label unrelated venues", () => {
   assert.equal(api.findMatches("Imaginary Symposium on Nothing").length, 0);
 });
+
+test("extracts a uniquely truncated Google Scholar venue", () => {
+  const matches = api.findScholarMatches(
+    "G Zhao, M Pietikainen - IEEE transactions on pattern analysis …, 2007 - ieeexplore.ieee.org"
+  );
+  assert.deepEqual([...new Set(matches.map((entry) => entry.rank))], ["A"]);
+});
+
+test("preserves Google Scholar cross-list ambiguity for an exact venue", () => {
+  const matches = api.findScholarMatches(
+    "A Author - Computational Visual Media, 2024 - Springer"
+  );
+  assert.deepEqual([...new Set(matches.map((entry) => entry.rank))].sort(), ["B", "C"]);
+});
+
+test("does not guess an ambiguous truncated Google Scholar venue", () => {
+  assert.equal(
+    api.findScholarMatches("A Author - … on computer vision …, 2024 - example.org").length,
+    0
+  );
+});
