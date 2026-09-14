@@ -7,6 +7,14 @@
   const abbreviationAliases = new Map([
     ["sigkdd", ["kdd"]]
   ]);
+  const scholarVenueAliases = [
+    { phrase: "advances in neural information processing systems", abbreviation: "neurips", kind: "conference" },
+    { phrase: "conference on computer vision and pattern recognition", abbreviation: "cvpr", kind: "conference" },
+    { phrase: "international conference on computer vision", abbreviation: "iccv", kind: "conference" }
+  ];
+  const scholarIgnoredUppercaseTokens = new Set([
+    "acm", "cvf", "ieee", "lncs"
+  ]);
   const observedText = new WeakMap();
 
   const canonicalName = (value) => String(value ?? "")
@@ -78,16 +86,60 @@
     const venueParts = parts.length >= 3 ? parts.slice(1, -1) : [rawText];
 
     for (const venuePart of venueParts) {
-      const candidate = String(venuePart ?? "")
-        .replace(/[,;]?\s*(?:19|20)\d{2}\b.*$/u, "")
+      const rawCandidate = String(venuePart ?? "")
         .replace(/^[\s.…·]+|[\s.…·]+$/gu, "")
         .trim();
-      if (!candidate) continue;
+      if (!rawCandidate) continue;
+
+      // Parenthesized abbreviations such as "(ICDM)" and "(ICCV)" are the
+      // strongest signal, and must be checked before trimming a leading year.
+      const rawExact = findMatches(rawCandidate);
+      if (rawExact.length) return rawExact;
+
+      const candidate = rawCandidate
+        .replace(/^(?:19|20)\d{2}\s+/u, "")
+        .replace(/[,;]\s*(?:19|20)\d{2}\b.*$/u, "")
+        .replace(/\s+\d+\s*(?:\([^)]*\))?\s*,\s*\d+(?:\s*[-–]\s*\d+)?\s*$/u, "")
+        .replace(/,\s*\d+(?:\s*[-–]\s*\d+)?\s*$/u, "")
+        .trim();
 
       const exact = findMatches(candidate);
       if (exact.length) return exact;
 
+      // CCF ranks full/regular conference papers, not colocated or secondary
+      // tracks. This check comes after exact matching because a few standalone
+      // venues whose official names contain "Workshop" are themselves listed.
+      if (/\b(?:findings?|workshops?|short\s+papers?|demos?|technical\s+briefs?|summar(?:y|ies))\b|\bcompanion\s+proceedings\b/iu.test(rawCandidate)) {
+        continue;
+      }
+
+      const leadingAbbreviation = rawCandidate.match(/^([A-Z][A-Za-z0-9-]{2,})\s*['’]?\s*\d{4}\b/u)?.[1];
+      if (leadingAbbreviation) {
+        const leadingMatch = abbreviationIndex.get(canonicalAbbreviation(leadingAbbreviation));
+        if (leadingMatch?.length) return unique(leadingMatch);
+      }
+
       const normalized = canonicalName(candidate).replace(/^(?:of|in) the\s+/u, "");
+      // Scholar often wraps a real venue acronym in qualifiers such as
+      // "Highlight" or "Long Paper". Match only all-uppercase
+      // catalog abbreviations and explicitly reject publisher/series tokens.
+      const abbreviationTokens = rawCandidate.match(/\b[A-Z][A-Z0-9-]{3,}\b/g) ?? [];
+      for (const token of abbreviationTokens) {
+        const key = canonicalAbbreviation(token);
+        if (scholarIgnoredUppercaseTokens.has(key)) continue;
+        const embedded = abbreviationIndex.get(key);
+        if (embedded?.length) return unique(embedded);
+      }
+
+      // A small, explicit alias list covers Scholar's established display
+      // names without turning the matcher into unsafe general fuzzy matching.
+      for (const alias of scholarVenueAliases) {
+        if (!normalized.includes(alias.phrase)) continue;
+        const aliased = unique((abbreviationIndex.get(alias.abbreviation) ?? [])
+          .filter((entry) => entry.kind === alias.kind));
+        if (aliased.length) return aliased;
+      }
+
       const wordCount = normalized.split(" ").filter(Boolean).length;
       if (normalized.length < 20 || wordCount < 3) continue;
 

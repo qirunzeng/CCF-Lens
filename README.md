@@ -8,6 +8,8 @@ This repository has an independent Git history and does not contain source code,
 
 The ranking facts are extracted directly from the official 72-page CCF seventh-edition PDF. CCF remains the authoritative source for the catalog; the extension is not affiliated with or endorsed by CCF.
 
+On Google Scholar, the extension follows CCF's publication-scope rule: conference badges apply to full/regular papers. Findings, workshops, short papers, demos, technical briefs, summaries, and companion proceedings are deliberately not labeled as the ranked main conference.
+
 ## Build
 
 Requirements:

@@ -68,3 +68,49 @@ test("recognizes Google Scholar's KDD shorthand for SIGKDD", () => {
   const matches = api.findScholarMatches("KDD'2026");
   assert.deepEqual([...new Set(matches.map((entry) => entry.rank))], ["A"]);
 });
+
+const scholarProfileCases = [
+  ["CVPR 2026 (Highlight)", "CVPR", "A"],
+  ["ACM CIKM(Long Paper)", "CIKM", "B"],
+  ["ICLR (Spotlight) 2025", "ICLR", "A"],
+  ["2022 IEEE International Conference on Data Mining (ICDM), 1335-1340", "ICDM", "B"],
+  ["IEEE Transactions on Neural Networks and Learning Systems 35 (12), 17398-17410", "TNNLS", "B"],
+  ["Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and …", "SIGKDD", "A"],
+  ["2025 IEEE/CVF International Conference on Computer Vision (ICCV), 273-283", "ICCV", "A"],
+  ["2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2002-2011", "CVPR", "A"],
+  ["Proceedings of the IEEE international conference on computer vision …", "ICCV", "A"],
+  ["Advances in Neural Information Processing Systems 38, 164278-164339", "NeurIPS", "A"],
+  ["Asia-Pacific Workshop on Networking, 2025", "APNet", "C"]
+];
+
+for (const [venue, abbreviation, rank] of scholarProfileCases) {
+  test(`matches Google Scholar profile venue: ${abbreviation}`, () => {
+    const matches = api.findScholarMatches(venue);
+    assert.deepEqual(
+      matches.map((entry) => [entry.abbreviation, entry.rank]),
+      [[abbreviation, rank]]
+    );
+  });
+}
+
+test("does not invent a CCF label for a non-catalog journal", () => {
+  assert.equal(
+    api.findScholarMatches("IEEE Transactions on Industrial Electronics 69 (5), 4999-5008").length,
+    0
+  );
+});
+
+test("does not label arXiv entries", () => {
+  assert.equal(api.findScholarMatches("arXiv preprint arXiv:2503.04550").length, 0);
+});
+
+for (const venue of [
+  "EMNLP'2026 Findings",
+  "EMNLP 2026 Findings",
+  "2017 IEEE conference on computer vision and pattern recognition workshops …",
+  "Companion Proceedings of the ACM Web Conference 2023, 648-658"
+]) {
+  test(`does not rank a non-full conference track: ${venue}`, () => {
+    assert.equal(api.findScholarMatches(venue).length, 0);
+  });
+}
