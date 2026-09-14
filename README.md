@@ -14,18 +14,36 @@ Requirements:
 
 - macOS 13 or newer
 - Full Xcode installation
-- XcodeGen
 - An Apple ID configured in Xcode for local signing
 
 Run:
 
 ```bash
-cd Safari
-xcodegen generate
-open "CCF Lens.xcodeproj"
+open "Safari/CCF Lens.xcodeproj"
 ```
 
-Select your Apple development team for both targets, run the `CCF Lens` scheme, then enable the extension in Safari Settings > Extensions.
+The checked-in project selects Team ID `TC3755P2NZ` (Qirun Zeng Personal Team) for automatic signing. Other developers must select their own team for both targets. Run the `CCF Lens` scheme, then enable the extension in Safari Settings > Extensions.
+
+XcodeGen is only required after editing `Safari/project.yml`:
+
+```bash
+cd Safari
+xcodegen generate
+```
+
+### Synced-folder signing failure
+
+Some file-provider-backed `Documents` folders add Finder metadata to newly created app bundles. If signing fails with `resource fork, Finder information, or similar detritus not allowed`, build with Derived Data outside the synced folder:
+
+```bash
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
+  xcodebuild -project "Safari/CCF Lens.xcodeproj" \
+  -scheme "CCF Lens" -configuration Debug \
+  -destination "platform=macOS,arch=arm64" \
+  -derivedDataPath /private/tmp/ccf-lens-derived \
+  DEVELOPMENT_TEAM=TC3755P2NZ CODE_SIGN_STYLE=Automatic \
+  -allowProvisioningUpdates build
+```
 
 ## Verify
 

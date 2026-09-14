@@ -6,6 +6,7 @@ options:
 settings:
   base:
     CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: TC3755P2NZ
     CURRENT_PROJECT_VERSION: "1"
     MARKETING_VERSION: "1.0.0"
     SWIFT_VERSION: "5.0"
@@ -19,6 +20,9 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.qirunzeng.CCFLens
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: App/Info.plist
+        ENABLE_APP_SANDBOX: YES
+        ENABLE_HARDENED_RUNTIME: YES
         INFOPLIST_KEY_CFBundleDisplayName: CCF Lens
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -46,6 +50,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.qirunzeng.CCFLens.Extension
         PRODUCT_NAME: CCF Lens Extension
+        ENABLE_APP_SANDBOX: YES
+        ENABLE_HARDENED_RUNTIME: YES
         SKIP_INSTALL: YES
 schemes:
   CCF Lens:
