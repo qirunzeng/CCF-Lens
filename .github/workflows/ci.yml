@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  data-and-matcher-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m unittest discover -s tests -v
+      - run: node --test tests/*.test.mjs
+      - run: node --check WebExtension/content.js
+
+  safari-project:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: >-
+          xcodebuild
+          -project "Safari/CCF Lens.xcodeproj"
+          -scheme "CCF Lens"
+          -configuration Debug
+          -derivedDataPath "$RUNNER_TEMP/CCFLensDerivedData"
+          CODE_SIGNING_ALLOWED=NO
+          build

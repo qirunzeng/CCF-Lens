@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		200A8DC976670B4634DA5B54 /* WebExtension in Resources */ = {isa = PBXBuildFile; fileRef = 819962CD6885CA6FA29833B8 /* WebExtension */; };
+		232103F36D609A796687F3EC /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE438F01035D6D589D668EA /* SafariExtensionHandler.swift */; };
+		433AC606748AE36A92FFBED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B0C58976065FB51EB9F7FE /* Assets.xcassets */; };
+		6DB59517187C47611906E2B3 /* CCF Lens Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7985E5B300B4BD1107087EAC /* CCFLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462C0DE9A418AE302D42565A /* CCFLensApp.swift */; };
+		DE9E4CC994C537E5A63CB8E9 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = F71C9CAB46A9389F3BD0813C /* manifest.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CBD08D70DFF2FEA013EAC37C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 903123CC27DC64F3F96F9653 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE6E713260C71D4E473B9412;
+			remoteInfo = "CCF Lens Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F720B512A1CB73EED4FB3047 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6DB59517187C47611906E2B3 /* CCF Lens Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CCF Lens Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D3965A7CC048948BCAAE97 /* CCF Lens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CCF Lens.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		462C0DE9A418AE302D42565A /* CCFLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCFLensApp.swift; sourceTree = "<group>"; };
+		819962CD6885CA6FA29833B8 /* WebExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WebExtension; path = ../WebExtension; sourceTree = SOURCE_ROOT; };
+		89B0C58976065FB51EB9F7FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9BE438F01035D6D589D668EA /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		A8BB2C2E1205A80ACFB4A162 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F71C9CAB46A9389F3BD0813C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		21D485CFC1B6FF24482B18A3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A8BB2C2E1205A80ACFB4A162 /* Info.plist */,
+				9BE438F01035D6D589D668EA /* SafariExtensionHandler.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4ABE42968EFE7E68DB843F82 /* CCF-Lens-Safari */ = {
+			isa = PBXGroup;
+			children = (
+				F71C9CAB46A9389F3BD0813C /* manifest.json */,
+			);
+			name = "CCF-Lens-Safari";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5AA8515986761BFCF67BE6B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */,
+				29D3965A7CC048948BCAAE97 /* CCF Lens.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81EC7010AA1625214832D3D7 = {
+			isa = PBXGroup;
+			children = (
+				819962CD6885CA6FA29833B8 /* WebExtension */,
+				94207692004FA4229E1A8E5A /* App */,
+				4ABE42968EFE7E68DB843F82 /* CCF-Lens-Safari */,
+				21D485CFC1B6FF24482B18A3 /* Extension */,
+				5AA8515986761BFCF67BE6B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94207692004FA4229E1A8E5A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				89B0C58976065FB51EB9F7FE /* Assets.xcassets */,
+				462C0DE9A418AE302D42565A /* CCFLensApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77BA97C20A63BF4C09D091EB /* CCF Lens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "CCF Lens" */;
+			buildPhases = (
+				CBA7816A957D2A00AEFB6A77 /* Sources */,
+				81E74638B93E0D3993451F23 /* Resources */,
+				F720B512A1CB73EED4FB3047 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C56AF57F8228506585AB2E0E /* PBXTargetDependency */,
+			);
+			name = "CCF Lens";
+			packageProductDependencies = (
+			);
+			productName = "CCF Lens";
+			productReference = 29D3965A7CC048948BCAAE97 /* CCF Lens.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EE6E713260C71D4E473B9412 /* CCF Lens Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "CCF Lens Extension" */;
+			buildPhases = (
+				A43F601E719362BF422BDA99 /* Sources */,
+				3E00F70883D83826233863D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CCF Lens Extension";
+			packageProductDependencies = (
+			);
+			productName = "CCF Lens Extension";
+			productReference = 078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		903123CC27DC64F3F96F9653 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					77BA97C20A63BF4C09D091EB = {
+						ProvisioningStyle = Automatic;
+					};
+					EE6E713260C71D4E473B9412 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "CCF Lens" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 81EC7010AA1625214832D3D7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5AA8515986761BFCF67BE6B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77BA97C20A63BF4C09D091EB /* CCF Lens */,
+				EE6E713260C71D4E473B9412 /* CCF Lens Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E00F70883D83826233863D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				200A8DC976670B4634DA5B54 /* WebExtension in Resources */,
+				DE9E4CC994C537E5A63CB8E9 /* manifest.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81E74638B93E0D3993451F23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				433AC606748AE36A92FFBED7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A43F601E719362BF422BDA99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				232103F36D609A796687F3EC /* SafariExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBA7816A957D2A00AEFB6A77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7985E5B300B4BD1107087EAC /* CCFLensApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C56AF57F8228506585AB2E0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE6E713260C71D4E473B9412 /* CCF Lens Extension */;
+			targetProxy = CBD08D70DFF2FEA013EAC37C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5EAA900489A43648834E94FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens.Extension;
+				PRODUCT_NAME = "CCF Lens Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7BAFF7A15F1D5D0487FAD144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C00C932D9C10245E4C9B50EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CACC8CC23C197392DE4F3181 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens.Extension;
+				PRODUCT_NAME = "CCF Lens Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CC6DF230BD3BD8418F6B4427 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "CCF Lens";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EBAE4F4DAA5F3FB2EE2C86B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "CCF Lens";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "CCF Lens Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CACC8CC23C197392DE4F3181 /* Debug */,
+				5EAA900489A43648834E94FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "CCF Lens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBAE4F4DAA5F3FB2EE2C86B9 /* Debug */,
+				CC6DF230BD3BD8418F6B4427 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "CCF Lens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C00C932D9C10245E4C9B50EB /* Debug */,
+				7BAFF7A15F1D5D0487FAD144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 903123CC27DC64F3F96F9653 /* Project object */;
+}
