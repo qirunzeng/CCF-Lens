@@ -4,6 +4,9 @@
   const catalog = globalThis.CCFLensCatalog?.entries ?? [];
   const nameIndex = new Map();
   const abbreviationIndex = new Map();
+  const abbreviationAliases = new Map([
+    ["sigkdd", ["kdd"]]
+  ]);
   const observedText = new WeakMap();
 
   const canonicalName = (value) => String(value ?? "")
@@ -33,7 +36,11 @@
     const previousName = entry.abbreviation.match(/(?:原|formerly)\s*([^）)]+)/i)?.[1];
     if (previousName) abbreviations.push(previousName);
     for (const abbreviation of abbreviations) {
-      addToIndex(abbreviationIndex, canonicalAbbreviation(abbreviation), entry);
+      const key = canonicalAbbreviation(abbreviation);
+      addToIndex(abbreviationIndex, key, entry);
+      for (const alias of abbreviationAliases.get(key) ?? []) {
+        addToIndex(abbreviationIndex, alias, entry);
+      }
     }
   }
 

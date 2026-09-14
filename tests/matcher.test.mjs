@@ -63,3 +63,8 @@ test("does not guess an ambiguous truncated Google Scholar venue", () => {
     0
   );
 });
+
+test("recognizes Google Scholar's KDD shorthand for SIGKDD", () => {
+  const matches = api.findScholarMatches("KDD'2026");
+  assert.deepEqual([...new Set(matches.map((entry) => entry.rank))], ["A"]);
+});
