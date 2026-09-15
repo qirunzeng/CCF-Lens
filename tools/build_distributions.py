@@ -53,7 +53,9 @@ def userscript_text() -> str:
     metadata = [
         "// ==UserScript==",
         "// @name         VenueRank Lens",
-        "// @namespace    https://github.com/qirunzeng/VenueRank-Lens",
+        # Keep the original namespace permanently: userscript managers use the
+        # name/namespace pair as the installed script's stable identity.
+        "// @namespace    https://github.com/qirunzeng/CCF-Lens",
         f"// @version      {version}",
         "// @description  Show CCF 2026, ICORE 2026, and TH-CPL 2019 venue ranks on supported publication sites.",
         "// @author       Qirun Zeng",
