@@ -23,6 +23,8 @@ for (const file of ["WebExtension/catalog.js", "WebExtension/content.js"]) {
 }
 
 const api = context.__CCF_LENS_API__;
+const venueSummary = (matches) => [...matches]
+  .map((entry) => [entry.abbreviation, entry.rank]);
 
 test("matches official full names", () => {
   const matches = api.findMatches("IEEE Transactions on Pattern Analysis and Machine Intelligence");
@@ -90,7 +92,7 @@ for (const [venue, abbreviation, rank] of scholarProfileCases) {
   test(`matches Google Scholar profile venue: ${abbreviation}`, () => {
     const matches = api.findScholarMatches(venue);
     assert.deepEqual(
-      matches.map((entry) => [entry.abbreviation, entry.rank]),
+      venueSummary(matches),
       [[abbreviation, rank]]
     );
   });
