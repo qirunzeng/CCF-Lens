@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         VenueRank Lens
-// @namespace    https://github.com/qirunzeng/CCF-Lens
+// @namespace    https://github.com/qirunzeng/VenueRank-Lens
 // @version      1.2.0
 // @description  Show CCF 2026, ICORE 2026, and TH-CPL 2019 venue ranks on supported publication sites.
 // @author       Qirun Zeng
