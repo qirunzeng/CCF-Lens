@@ -1,6 +1,6 @@
-# CCF Lens for Safari
+# CCF Lens for Safari, Chrome, Edge, and Tampermonkey
 
-CCF Lens is an independently implemented Safari Web Extension that labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
+CCF Lens is an independently implemented browser extension that labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
 
 ## Clean implementation
 
@@ -10,7 +10,23 @@ The ranking facts are extracted directly from the official 72-page CCF seventh-e
 
 On Google Scholar, the extension follows CCF's publication-scope rule: conference badges apply to full/regular papers. Findings, workshops, short papers, demos, technical briefs, summaries, and companion proceedings are deliberately not labeled as the ranked main conference.
 
-## Build
+## Install
+
+### Chrome and Edge
+
+Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/CCF-Lens-Safari/releases). Store releases are prepared from the same Manifest V3 package.
+
+For local testing, extract the ZIP, open `chrome://extensions` or `edge://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted directory.
+
+### Tampermonkey
+
+Install Tampermonkey, then open the [CCF Lens userscript](https://raw.githubusercontent.com/qirunzeng/CCF-Lens-Safari/main/dist/ccf-lens.user.js). The userscript is self-contained and checks this URL for updates.
+
+### Safari
+
+Safari currently requires a local Xcode build and signing team. See the instructions below.
+
+## Build Safari
 
 Requirements:
 
@@ -52,7 +68,13 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
 ```bash
 python3 -m unittest discover -s tests
 node --test tests/*.test.mjs
+python3 tools/build_distributions.py
+node --check dist/ccf-lens.user.js
 ```
+
+The distribution builder produces separate Chrome and Edge store ZIPs plus a self-contained Tampermonkey userscript in `dist/`.
+
+Store descriptions, permission justifications, and privacy declarations are maintained in [`store-listing/listing.md`](./store-listing/listing.md). See [`PRIVACY.md`](./PRIVACY.md) for the public privacy policy.
 
 ## Refresh official data
 
