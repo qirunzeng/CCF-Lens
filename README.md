@@ -26,7 +26,9 @@ For local testing, extract the ZIP, open `chrome://extensions` or `edge://extens
 
 ### Tampermonkey
 
-Install Tampermonkey, then open the [CCF Lens userscript](https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js). The userscript is self-contained and checks this URL for updates.
+Install Tampermonkey, then use the public [CCF Lens page on Greasy Fork](https://greasyfork.org/en/scripts/595889-ccf-lens) for one-click installation and automatic updates.
+
+The [raw userscript on GitHub](https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js) remains available as a direct-install fallback.
 
 ### Safari
 
