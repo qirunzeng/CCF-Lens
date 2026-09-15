@@ -3,10 +3,13 @@
 
   const ccfCatalog = globalThis.CCFLensCatalog?.entries ?? [];
   const coreCatalog = globalThis.CORELensCatalog?.entries ?? [];
+  const thCatalog = globalThis.THCPLLensCatalog?.entries ?? [];
   const nameIndex = new Map();
   const abbreviationIndex = new Map();
   const coreNameIndex = new Map();
   const coreAbbreviationIndex = new Map();
+  const thNameIndex = new Map();
+  const thAbbreviationIndex = new Map();
   const abbreviationAliases = new Map([
     ["sigkdd", ["kdd"]]
   ]);
@@ -30,6 +33,7 @@
     .replace(/[–—]/g, "-")
     .replace(/\b(19|20)\d{2}\b/g, " ")
     .replace(/\b(proceedings|proc\.?|volume|vol\.?|conference paper|journal article)\b/g, " ")
+    .replace(/\btrans\b/g, "transactions")
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim()
     .replace(/\s+/g, " ");
@@ -70,6 +74,7 @@
 
   indexCatalog(ccfCatalog, nameIndex, abbreviationIndex, true);
   indexCatalog(coreCatalog, coreNameIndex, coreAbbreviationIndex);
+  indexCatalog(thCatalog, thNameIndex, thAbbreviationIndex, true);
 
   const selectorsByHost = {
     "scholar.google.com": [".gs_ri .gs_a", ".gsc_a_t .gs_gray"],
@@ -102,6 +107,7 @@
 
   const findMatches = (rawText) => findMatchesIn(rawText, nameIndex, abbreviationIndex);
   const findCoreMatches = (rawText) => findMatchesIn(rawText, coreNameIndex, coreAbbreviationIndex);
+  const findThMatches = (rawText) => findMatchesIn(rawText, thNameIndex, thAbbreviationIndex);
 
   const findScholarMatchesIn = (rawText, catalog, names, abbreviations) => {
     const parts = String(rawText ?? "").split(/\s+[-–—]\s+/u);
@@ -191,10 +197,14 @@
   const findCoreScholarMatches = (rawText) => findScholarMatchesIn(
     rawText, coreCatalog, coreNameIndex, coreAbbreviationIndex
   );
+  const findThScholarMatches = (rawText) => findScholarMatchesIn(
+    rawText, thCatalog, thNameIndex, thAbbreviationIndex
+  );
 
   const findRankings = (rawText, scholar = false) => ({
     ccf: scholar ? findScholarMatches(rawText) : findMatches(rawText),
-    core: scholar ? findCoreScholarMatches(rawText) : findCoreMatches(rawText)
+    core: scholar ? findCoreScholarMatches(rawText) : findCoreMatches(rawText),
+    th: scholar ? findThScholarMatches(rawText) : findThMatches(rawText)
   });
 
   if (globalThis.__CCF_LENS_TEST__) {
@@ -205,6 +215,8 @@
       findScholarMatches,
       findCoreMatches,
       findCoreScholarMatches,
+      findThMatches,
+      findThScholarMatches,
       findRankings
     });
   }
@@ -241,6 +253,14 @@
         rankLabel: coreRankLabel,
         rankClass: coreRankClass,
         title: (entry) => `${entry.name} · ICORE 2026 · ${entry.rank}`
+      },
+      {
+        source: "th",
+        label: "TH-CPL",
+        matches: rankings.th,
+        rankLabel: (rank) => rank,
+        rankClass: (rank) => rank.toLowerCase(),
+        title: (entry) => `${entry.name} · ${entry.domain} · TH-CPL 2019 ${entry.rank}`
       }
     ];
 

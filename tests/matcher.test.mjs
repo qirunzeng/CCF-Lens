@@ -21,6 +21,7 @@ const context = vm.createContext({
 for (const file of [
   "WebExtension/catalog.js",
   "WebExtension/core_catalog.js",
+  "WebExtension/th_catalog.js",
   "WebExtension/content.js"
 ]) {
   vm.runInContext(await readFile(new URL(file, root), "utf8"), context, { filename: file });
@@ -65,6 +66,35 @@ test("returns both ranking systems without conflating them", () => {
   const rankings = api.findRankings("ICCV 2026", true);
   assert.deepEqual(venueSummary(rankings.ccf), [["ICCV", "A"]]);
   assert.deepEqual(venueSummary(rankings.core), [["ICCV", "A*"]]);
+  assert.deepEqual(venueSummary(rankings.th), [["ICCV", "A"]]);
+});
+
+test("matches TH-CPL conference names on Google Scholar", () => {
+  const matches = api.findThScholarMatches(
+    "2025 IEEE/CVF International Conference on Computer Vision (ICCV), 273-283"
+  );
+  assert.deepEqual(venueSummary(matches), [["ICCV", "A"]]);
+});
+
+test("matches TH-CPL journals on Google Scholar", () => {
+  const matches = api.findThScholarMatches(
+    "IEEE Transactions on Pattern Analysis and Machine Intelligence 47 (1), 1-20"
+  );
+  assert.deepEqual(venueSummary(matches), [["TPAMI", "A"]]);
+});
+
+test("matches TH-CPL SIGKDD through Scholar's KDD shorthand", () => {
+  assert.deepEqual(venueSummary(api.findThScholarMatches("KDD'2026")), [["SIGKDD", "A"]]);
+});
+
+test("matches every official TH-CPL full name", () => {
+  for (const entry of context.THCPLLensCatalog.entries) {
+    const matches = api.findThMatches(entry.name);
+    assert.ok(
+      matches.some((match) => match.name === entry.name && match.rank === entry.rank),
+      `missing ${entry.kind} ${entry.rank}: ${entry.name}`
+    );
+  }
 });
 
 test("does not invent an ICORE label for a journal", () => {
@@ -158,5 +188,6 @@ for (const venue of [
   test(`does not rank a non-full conference track: ${venue}`, () => {
     assert.equal(api.findScholarMatches(venue).length, 0);
     assert.equal(api.findCoreScholarMatches(venue).length, 0);
+    assert.equal(api.findThScholarMatches(venue).length, 0);
   });
 }

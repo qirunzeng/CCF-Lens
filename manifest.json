@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "VenueRank Lens",
-  "version": "1.1.0",
-  "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 与 ICORE 2026 等级。",
+  "version": "1.2.0",
+  "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026、ICORE 2026 与 TH-CPL 2019 等级。",
   "homepage_url": "https://github.com/qirunzeng/VenueRank-Lens",
   "action": {
     "default_title": "VenueRank Lens",
@@ -26,6 +26,7 @@
       "js": [
         "WebExtension/catalog.js",
         "WebExtension/core_catalog.js",
+        "WebExtension/th_catalog.js",
         "WebExtension/content.js"
       ],
       "css": [

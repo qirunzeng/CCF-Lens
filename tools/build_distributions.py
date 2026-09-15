@@ -16,6 +16,7 @@ CHROMIUM_FILES = (
     Path("LICENSE"),
     Path("WebExtension/catalog.js"),
     Path("WebExtension/core_catalog.js"),
+    Path("WebExtension/th_catalog.js"),
     Path("WebExtension/content.js"),
     Path("WebExtension/content.css"),
     Path("WebExtension/popup.html"),
@@ -54,7 +55,7 @@ def userscript_text() -> str:
         "// @name         VenueRank Lens",
         "// @namespace    https://github.com/qirunzeng/VenueRank-Lens",
         f"// @version      {version}",
-        "// @description  Show CCF 2026 and ICORE 2026 venue ranks on supported publication sites.",
+        "// @description  Show CCF 2026, ICORE 2026, and TH-CPL 2019 venue ranks on supported publication sites.",
         "// @author       Qirun Zeng",
         "// @license      MIT",
     ]
@@ -94,6 +95,7 @@ def userscript_text() -> str:
     )
     catalog = (ROOT / "WebExtension/catalog.js").read_text(encoding="utf-8")
     core_catalog = (ROOT / "WebExtension/core_catalog.js").read_text(encoding="utf-8")
+    th_catalog = (ROOT / "WebExtension/th_catalog.js").read_text(encoding="utf-8")
     content = (ROOT / "WebExtension/content.js").read_text(encoding="utf-8")
     return (
         "\n".join(metadata)
@@ -102,6 +104,8 @@ def userscript_text() -> str:
         + catalog
         + "\n"
         + core_catalog
+        + "\n"
+        + th_catalog
         + "\n"
         + content
     )

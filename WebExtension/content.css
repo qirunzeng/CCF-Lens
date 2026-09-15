@@ -26,6 +26,9 @@
 .ccf-lens-core-rank-c,
 .ccf-lens-core-rank-au-c { --ccf-lens-color: #475467; }
 
+.ccf-lens-th-rank-a { --ccf-lens-color: #7a271a; }
+.ccf-lens-th-rank-b { --ccf-lens-color: #9e165f; }
+
 @media (prefers-color-scheme: dark) {
   .ccf-lens-ccf-rank-a { --ccf-lens-color: #f97066; }
   .ccf-lens-ccf-rank-b { --ccf-lens-color: #fdb022; }
@@ -36,4 +39,6 @@
   .ccf-lens-core-rank-au-b { --ccf-lens-color: #5fe9d0; }
   .ccf-lens-core-rank-c,
   .ccf-lens-core-rank-au-c { --ccf-lens-color: #d0d5dd; }
+  .ccf-lens-th-rank-a { --ccf-lens-color: #fda29b; }
+  .ccf-lens-th-rank-b { --ccf-lens-color: #f9a8d4; }
 }
