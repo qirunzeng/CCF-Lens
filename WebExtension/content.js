@@ -1,9 +1,12 @@
 (() => {
   "use strict";
 
-  const catalog = globalThis.CCFLensCatalog?.entries ?? [];
+  const ccfCatalog = globalThis.CCFLensCatalog?.entries ?? [];
+  const coreCatalog = globalThis.CORELensCatalog?.entries ?? [];
   const nameIndex = new Map();
   const abbreviationIndex = new Map();
+  const coreNameIndex = new Map();
+  const coreAbbreviationIndex = new Map();
   const abbreviationAliases = new Map([
     ["sigkdd", ["kdd"]]
   ]);
@@ -40,20 +43,33 @@
     index.set(key, matches);
   };
 
-  for (const entry of catalog) {
-    addToIndex(nameIndex, canonicalName(entry.name), entry);
-    const primaryAbbreviation = entry.abbreviation.replace(/[（(].*$/u, "").trim();
-    const abbreviations = [primaryAbbreviation];
-    const previousName = entry.abbreviation.match(/(?:原|formerly)\s*([^）)]+)/i)?.[1];
-    if (previousName) abbreviations.push(previousName);
-    for (const abbreviation of abbreviations) {
-      const key = canonicalAbbreviation(abbreviation);
-      addToIndex(abbreviationIndex, key, entry);
-      for (const alias of abbreviationAliases.get(key) ?? []) {
-        addToIndex(abbreviationIndex, alias, entry);
+  const indexCatalog = (catalog, names, abbreviations, includeAliases = false) => {
+    for (const entry of catalog) {
+      addToIndex(names, canonicalName(entry.name), entry);
+      const nameWithoutHistory = entry.name
+        .replace(/\s*\((?:was|previously|formerly|merged|amalgamation|changed|duplicate)\b.*$/iu, "")
+        .trim();
+      if (nameWithoutHistory !== entry.name) {
+        addToIndex(names, canonicalName(nameWithoutHistory), entry);
+      }
+
+      const primaryAbbreviation = entry.abbreviation.replace(/[（(].*$/u, "").trim();
+      const candidates = [primaryAbbreviation];
+      const previousName = entry.abbreviation.match(/(?:原|formerly)\s*([^）)]+)/i)?.[1];
+      if (previousName) candidates.push(previousName);
+      for (const abbreviation of candidates) {
+        const key = canonicalAbbreviation(abbreviation);
+        addToIndex(abbreviations, key, entry);
+        if (!includeAliases) continue;
+        for (const alias of abbreviationAliases.get(key) ?? []) {
+          addToIndex(abbreviations, alias, entry);
+        }
       }
     }
-  }
+  };
+
+  indexCatalog(ccfCatalog, nameIndex, abbreviationIndex, true);
+  indexCatalog(coreCatalog, coreNameIndex, coreAbbreviationIndex);
 
   const selectorsByHost = {
     "scholar.google.com": [".gs_ri .gs_a", ".gsc_a_t .gs_gray"],
@@ -64,13 +80,13 @@
   };
 
   const unique = (entries) => [...new Map(entries.map((entry) => [
-    `${entry.rank}|${entry.kind}|${entry.domain}|${entry.name}`,
+    `${entry.id ?? ""}|${entry.rank}|${entry.kind}|${entry.domain ?? ""}|${entry.name}`,
     entry
   ])).values()];
 
-  const findMatches = (rawText) => {
+  const findMatchesIn = (rawText, names, abbreviations) => {
     const text = canonicalName(rawText);
-    const exact = nameIndex.get(text);
+    const exact = names.get(text);
     if (exact?.length) return unique(exact);
 
     const parenthetical = [...rawText.matchAll(/\(([^()]+)\)/g)].at(-1)?.[1] ?? "";
@@ -78,13 +94,16 @@
       .map(canonicalAbbreviation)
       .filter(Boolean);
     for (const candidate of candidates) {
-      const match = abbreviationIndex.get(candidate.replace(/\d+$/g, ""));
+      const match = abbreviations.get(candidate.replace(/\d+$/g, ""));
       if (match?.length) return unique(match);
     }
     return [];
   };
 
-  const findScholarMatches = (rawText) => {
+  const findMatches = (rawText) => findMatchesIn(rawText, nameIndex, abbreviationIndex);
+  const findCoreMatches = (rawText) => findMatchesIn(rawText, coreNameIndex, coreAbbreviationIndex);
+
+  const findScholarMatchesIn = (rawText, catalog, names, abbreviations) => {
     const parts = String(rawText ?? "").split(/\s+[-–—]\s+/u);
     const venueParts = parts.length >= 3 ? parts.slice(1, -1) : [rawText];
 
@@ -96,7 +115,7 @@
 
       // Parenthesized abbreviations such as "(ICDM)" and "(ICCV)" are the
       // strongest signal, and must be checked before trimming a leading year.
-      const rawExact = findMatches(rawCandidate);
+      const rawExact = findMatchesIn(rawCandidate, names, abbreviations);
       if (rawExact.length) return rawExact;
 
       const candidate = rawCandidate
@@ -106,7 +125,7 @@
         .replace(/,\s*\d+(?:\s*[-–]\s*\d+)?\s*$/u, "")
         .trim();
 
-      const exact = findMatches(candidate);
+      const exact = findMatchesIn(candidate, names, abbreviations);
       if (exact.length) return exact;
 
       // CCF ranks full/regular conference papers, not colocated or secondary
@@ -118,7 +137,7 @@
 
       const leadingAbbreviation = rawCandidate.match(/^([A-Z][A-Za-z0-9-]{2,})\s*['’]?\s*\d{4}\b/u)?.[1];
       if (leadingAbbreviation) {
-        const leadingMatch = abbreviationIndex.get(canonicalAbbreviation(leadingAbbreviation));
+        const leadingMatch = abbreviations.get(canonicalAbbreviation(leadingAbbreviation));
         if (leadingMatch?.length) return unique(leadingMatch);
       }
 
@@ -138,7 +157,7 @@
         for (const token of abbreviationTokens) {
           const key = canonicalAbbreviation(token);
           if (scholarIgnoredUppercaseTokens.has(key)) continue;
-          const embedded = abbreviationIndex.get(key);
+          const embedded = abbreviations.get(key);
           if (embedded?.length) return unique(embedded);
         }
       }
@@ -147,7 +166,7 @@
       // names without turning the matcher into unsafe general fuzzy matching.
       for (const alias of scholarVenueAliases) {
         if (!normalized.includes(alias.phrase)) continue;
-        const aliased = unique((abbreviationIndex.get(alias.abbreviation) ?? [])
+        const aliased = unique((abbreviations.get(alias.abbreviation) ?? [])
           .filter((entry) => entry.kind === alias.kind));
         if (aliased.length) return aliased;
       }
@@ -166,28 +185,81 @@
     return [];
   };
 
+  const findScholarMatches = (rawText) => findScholarMatchesIn(
+    rawText, ccfCatalog, nameIndex, abbreviationIndex
+  );
+  const findCoreScholarMatches = (rawText) => findScholarMatchesIn(
+    rawText, coreCatalog, coreNameIndex, coreAbbreviationIndex
+  );
+
+  const findRankings = (rawText, scholar = false) => ({
+    ccf: scholar ? findScholarMatches(rawText) : findMatches(rawText),
+    core: scholar ? findCoreScholarMatches(rawText) : findCoreMatches(rawText)
+  });
+
   if (globalThis.__CCF_LENS_TEST__) {
     globalThis.__CCF_LENS_API__ = Object.freeze({
       canonicalName,
       canonicalAbbreviation,
       findMatches,
-      findScholarMatches
+      findScholarMatches,
+      findCoreMatches,
+      findCoreScholarMatches,
+      findRankings
     });
   }
 
-  const renderBadge = (venueElement, matches) => {
-    venueElement.parentElement?.querySelectorAll(":scope > .ccf-lens-badge").forEach((badge) => badge.remove());
-    if (!matches.length) return;
+  const rankOrder = new Map([
+    ["A*", 0], ["A", 1], ["B", 2], ["Australasian B", 3],
+    ["C", 4], ["Australasian C", 5]
+  ]);
+  const coreRankLabel = (rank) => rank
+    .replace("Australasian B", "B (AU)")
+    .replace("Australasian C", "C (AU)");
+  const coreRankClass = (rank) => rank
+    .replace("A*", "a-star")
+    .replace("Australasian ", "au-")
+    .toLowerCase();
 
-    const ranks = [...new Set(matches.map((entry) => entry.rank))].sort();
-    const badge = document.createElement("span");
-    badge.className = `ccf-lens-badge ccf-lens-rank-${ranks[0].toLowerCase()}`;
-    badge.textContent = `CCF ${ranks.join("/")}`;
-    badge.setAttribute("role", "note");
-    badge.title = matches
-      .map((entry) => `${entry.name} · ${entry.domain} · CCF ${entry.rank}`)
-      .join("\n");
-    venueElement.after(badge);
+  const renderBadges = (venueElement, rankings) => {
+    venueElement.parentElement?.querySelectorAll(":scope > .ccf-lens-badge").forEach((badge) => badge.remove());
+    let insertionPoint = venueElement;
+
+    const groups = [
+      {
+        source: "ccf",
+        label: "CCF",
+        matches: rankings.ccf,
+        rankLabel: (rank) => rank,
+        rankClass: (rank) => rank.toLowerCase(),
+        title: (entry) => `${entry.name} · ${entry.domain} · CCF ${entry.rank}`
+      },
+      {
+        source: "core",
+        label: "CORE",
+        matches: rankings.core,
+        rankLabel: coreRankLabel,
+        rankClass: coreRankClass,
+        title: (entry) => `${entry.name} · ICORE 2026 · ${entry.rank}`
+      }
+    ];
+
+    for (const group of groups) {
+      if (!group.matches.length) continue;
+      const ranks = [...new Set(group.matches.map((entry) => entry.rank))]
+        .sort((left, right) => (rankOrder.get(left) ?? 99) - (rankOrder.get(right) ?? 99));
+      const badge = document.createElement("span");
+      badge.className = [
+        "ccf-lens-badge",
+        `ccf-lens-source-${group.source}`,
+        `ccf-lens-${group.source}-rank-${group.rankClass(ranks[0])}`
+      ].join(" ");
+      badge.textContent = `${group.label} ${ranks.map(group.rankLabel).join("/")}`;
+      badge.setAttribute("role", "note");
+      badge.title = group.matches.map(group.title).join("\n");
+      insertionPoint.after(badge);
+      insertionPoint = badge;
+    }
   };
 
   const scan = () => {
@@ -196,10 +268,8 @@
       const text = element.textContent?.trim() ?? "";
       if (!text || observedText.get(element) === text) continue;
       observedText.set(element, text);
-      const matches = location.hostname === "scholar.google.com"
-        ? findScholarMatches(text)
-        : findMatches(text);
-      renderBadge(element, matches);
+      const rankings = findRankings(text, location.hostname === "scholar.google.com");
+      renderBadges(element, rankings);
     }
   };
 

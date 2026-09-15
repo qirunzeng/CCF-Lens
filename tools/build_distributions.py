@@ -15,6 +15,7 @@ CHROMIUM_FILES = (
     Path("manifest.json"),
     Path("LICENSE"),
     Path("WebExtension/catalog.js"),
+    Path("WebExtension/core_catalog.js"),
     Path("WebExtension/content.js"),
     Path("WebExtension/content.css"),
     Path("WebExtension/popup.html"),
@@ -53,7 +54,7 @@ def userscript_text() -> str:
         "// @name         CCF Lens",
         "// @namespace    https://github.com/qirunzeng/CCF-Lens",
         f"// @version      {version}",
-        "// @description  Show CCF 2026 venue ranks on supported publication sites.",
+        "// @description  Show CCF 2026 and ICORE 2026 venue ranks on supported publication sites.",
         "// @author       Qirun Zeng",
         "// @license      MIT",
     ]
@@ -92,8 +93,18 @@ def userscript_text() -> str:
         ]
     )
     catalog = (ROOT / "WebExtension/catalog.js").read_text(encoding="utf-8")
+    core_catalog = (ROOT / "WebExtension/core_catalog.js").read_text(encoding="utf-8")
     content = (ROOT / "WebExtension/content.js").read_text(encoding="utf-8")
-    return "\n".join(metadata) + style_loader + project_menu + catalog + "\n" + content
+    return (
+        "\n".join(metadata)
+        + style_loader
+        + project_menu
+        + catalog
+        + "\n"
+        + core_catalog
+        + "\n"
+        + content
+    )
 
 
 def build(output_directory: Path) -> list[Path]:

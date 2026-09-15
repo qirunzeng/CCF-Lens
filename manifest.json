@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "CCF Lens",
-  "version": "1.0.2",
-  "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 推荐等级。",
+  "version": "1.1.0",
+  "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 与 ICORE 2026 等级。",
   "homepage_url": "https://github.com/qirunzeng/CCF-Lens",
   "action": {
     "default_title": "CCF Lens",
@@ -25,6 +25,7 @@
       ],
       "js": [
         "WebExtension/catalog.js",
+        "WebExtension/core_catalog.js",
         "WebExtension/content.js"
       ],
       "css": [

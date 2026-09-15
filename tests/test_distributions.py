@@ -28,12 +28,13 @@ class DistributionTests(unittest.TestCase):
         archives = [path for path in self.artifacts if path.suffix == ".zip"]
         self.assertEqual(
             {path.name for path in archives},
-            {"ccf-lens-chrome-1.0.2.zip", "ccf-lens-edge-1.0.2.zip"},
+            {"ccf-lens-chrome-1.1.0.zip", "ccf-lens-edge-1.1.0.zip"},
         )
         for archive_path in archives:
             with zipfile.ZipFile(archive_path) as archive:
                 self.assertIn("manifest.json", archive.namelist())
                 self.assertIn("WebExtension/popup.html", archive.namelist())
+                self.assertIn("WebExtension/core_catalog.js", archive.namelist())
                 package = json.loads(archive.read("manifest.json"))
                 self.assertEqual(package["manifest_version"], 3)
                 self.assertEqual(package["name"], "CCF Lens")
@@ -44,12 +45,13 @@ class DistributionTests(unittest.TestCase):
     def test_userscript_is_self_contained_and_updateable(self):
         userscript = (self.output / "ccf-lens.user.js").read_text(encoding="utf-8")
         self.assertIn("// ==UserScript==", userscript)
-        self.assertIn("// @version      1.0.2", userscript)
+        self.assertIn("// @version      1.1.0", userscript)
         self.assertIn("// @updateURL    https://raw.githubusercontent.com/", userscript)
         self.assertNotIn("// @require", userscript)
         self.assertIn("GM_registerMenuCommand", userscript)
         self.assertIn("Qirun Zeng", userscript)
         self.assertIn("globalThis.CCFLensCatalog", userscript)
+        self.assertIn("globalThis.CORELensCatalog", userscript)
         self.assertIn("const findScholarMatches", userscript)
         self.assertIn("ccf-lens-badge", userscript)
 

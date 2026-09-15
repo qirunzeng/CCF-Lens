@@ -18,7 +18,11 @@ const context = vm.createContext({
   __CCF_LENS_TEST__: true
 });
 
-for (const file of ["WebExtension/catalog.js", "WebExtension/content.js"]) {
+for (const file of [
+  "WebExtension/catalog.js",
+  "WebExtension/core_catalog.js",
+  "WebExtension/content.js"
+]) {
   vm.runInContext(await readFile(new URL(file, root), "utf8"), context, { filename: file });
 }
 
@@ -43,6 +47,33 @@ test("preserves cross-list ambiguity instead of overwriting it", () => {
 
 test("does not label unrelated venues", () => {
   assert.equal(api.findMatches("Imaginary Symposium on Nothing").length, 0);
+});
+
+test("matches official ICORE conference names", () => {
+  const matches = api.findCoreMatches("IEEE International Conference on Computer Vision");
+  assert.deepEqual(venueSummary(matches), [["ICCV", "A*"]]);
+});
+
+test("matches ICORE venues on Google Scholar", () => {
+  const matches = api.findCoreScholarMatches(
+    "2025 IEEE/CVF International Conference on Computer Vision (ICCV), 273-283"
+  );
+  assert.deepEqual(venueSummary(matches), [["ICCV", "A*"]]);
+});
+
+test("returns both ranking systems without conflating them", () => {
+  const rankings = api.findRankings("ICCV 2026", true);
+  assert.deepEqual(venueSummary(rankings.ccf), [["ICCV", "A"]]);
+  assert.deepEqual(venueSummary(rankings.core), [["ICCV", "A*"]]);
+});
+
+test("does not invent an ICORE label for a journal", () => {
+  assert.equal(
+    api.findCoreScholarMatches(
+      "IEEE Transactions on Pattern Analysis and Machine Intelligence 47 (1), 1-20"
+    ).length,
+    0
+  );
 });
 
 test("extracts a uniquely truncated Google Scholar venue", () => {
@@ -126,5 +157,6 @@ for (const venue of [
 ]) {
   test(`does not rank a non-full conference track: ${venue}`, () => {
     assert.equal(api.findScholarMatches(venue).length, 0);
+    assert.equal(api.findCoreScholarMatches(venue).length, 0);
   });
 }

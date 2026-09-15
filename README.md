@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/qirunzeng/CCF-Lens?style=social)](https://github.com/qirunzeng/CCF-Lens/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-CCF Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
+CCF Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with both the CCF 2026 recommendation rank and the ICORE 2026 conference rank.
 
 If CCF Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/CCF-Lens) so more researchers can find it.
 
@@ -12,7 +12,9 @@ If CCF Lens saves you time, consider [starring the repository](https://github.co
 
 This repository has an independent Git history and does not contain source code, styles, images, tests, build files, or ranking tables copied from the historical CCFrank extension. The implementation uses browser and Safari extension platform APIs.
 
-The ranking facts are extracted directly from the official 72-page CCF seventh-edition PDF. CCF remains the authoritative source for the catalog; the extension is not affiliated with or endorsed by CCF.
+The ranking facts are extracted from the official 72-page CCF seventh-edition PDF and the official ICORE 2026 CSV export. CCF and ICORE remain the authoritative sources for their respective catalogs; the extension is not affiliated with or endorsed by either organization.
+
+ICORE 2026 ranks conferences only. Accordingly, CCF Lens never displays a CORE badge for a journal. The visible `CORE` badge is a compact label for data from the official ICORE 2026 conference ranking.
 
 On Google Scholar, the extension follows CCF's publication-scope rule: conference badges apply to full/regular papers. Findings, workshops, short papers, demos, technical briefs, summaries, and companion proceedings are deliberately not labeled as the ranked main conference.
 
@@ -86,7 +88,7 @@ Store descriptions, permission justifications, and privacy declarations are main
 
 ## Refresh official data
 
-Download the official PDF from the URL in `tools/extract_ccf_pdf.py`, then run:
+To refresh the CCF catalog, download the official PDF from the URL in `tools/extract_ccf_pdf.py`, then run:
 
 ```bash
 python3 tools/extract_ccf_pdf.py path/to/official.pdf \
@@ -94,8 +96,18 @@ python3 tools/extract_ccf_pdf.py path/to/official.pdf \
   --javascript WebExtension/catalog.js
 ```
 
+To refresh the ICORE catalog, download the official ICORE 2026 conference export and run:
+
+```bash
+curl -L 'https://portal.core.edu.au/conf-ranks/?search=&by=all&source=ICORE2026&do=Export' \
+  -o /tmp/icore-2026.csv
+python3 tools/extract_core_csv.py /tmp/icore-2026.csv \
+  --json WebExtension/core_catalog.json \
+  --javascript WebExtension/core_catalog.js
+```
+
 ## License
 
 The original implementation and artwork in this repository are licensed under the [MIT License](./LICENSE), copyright 2026 qirunzeng.
 
-The CCF catalog is an external factual source published by the China Computer Federation. The MIT license does not claim ownership of, or relicense, CCF's source publication. CCF remains the authoritative source for ranking data.
+The CCF and ICORE catalogs are external factual sources published by their respective organizations. The MIT license does not claim ownership of, or relicense, either source publication. CCF and ICORE remain the authoritative sources for ranking data.

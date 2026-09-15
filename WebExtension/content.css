@@ -15,12 +15,25 @@
   white-space: nowrap;
 }
 
-.ccf-lens-rank-a { --ccf-lens-color: #b42318; }
-.ccf-lens-rank-b { --ccf-lens-color: #b54708; }
-.ccf-lens-rank-c { --ccf-lens-color: #027a48; }
+.ccf-lens-ccf-rank-a { --ccf-lens-color: #b42318; }
+.ccf-lens-ccf-rank-b { --ccf-lens-color: #b54708; }
+.ccf-lens-ccf-rank-c { --ccf-lens-color: #027a48; }
+
+.ccf-lens-core-rank-a-star { --ccf-lens-color: #6938ef; }
+.ccf-lens-core-rank-a { --ccf-lens-color: #175cd3; }
+.ccf-lens-core-rank-b,
+.ccf-lens-core-rank-au-b { --ccf-lens-color: #087e8b; }
+.ccf-lens-core-rank-c,
+.ccf-lens-core-rank-au-c { --ccf-lens-color: #475467; }
 
 @media (prefers-color-scheme: dark) {
-  .ccf-lens-rank-a { --ccf-lens-color: #f97066; }
-  .ccf-lens-rank-b { --ccf-lens-color: #fdb022; }
-  .ccf-lens-rank-c { --ccf-lens-color: #32d583; }
+  .ccf-lens-ccf-rank-a { --ccf-lens-color: #f97066; }
+  .ccf-lens-ccf-rank-b { --ccf-lens-color: #fdb022; }
+  .ccf-lens-ccf-rank-c { --ccf-lens-color: #32d583; }
+  .ccf-lens-core-rank-a-star { --ccf-lens-color: #b692f6; }
+  .ccf-lens-core-rank-a { --ccf-lens-color: #84adff; }
+  .ccf-lens-core-rank-b,
+  .ccf-lens-core-rank-au-b { --ccf-lens-color: #5fe9d0; }
+  .ccf-lens-core-rank-c,
+  .ccf-lens-core-rank-au-c { --ccf-lens-color: #d0d5dd; }
 }
