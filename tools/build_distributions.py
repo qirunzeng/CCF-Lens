@@ -17,6 +17,8 @@ CHROMIUM_FILES = (
     Path("WebExtension/catalog.js"),
     Path("WebExtension/content.js"),
     Path("WebExtension/content.css"),
+    Path("WebExtension/popup.html"),
+    Path("WebExtension/popup.css"),
     Path("WebExtension/icons/icon-16.png"),
     Path("WebExtension/icons/icon-32.png"),
     Path("WebExtension/icons/icon-48.png"),
@@ -64,7 +66,7 @@ def userscript_text() -> str:
             "// @updateURL    https://raw.githubusercontent.com/qirunzeng/CCF-Lens-Safari/main/dist/ccf-lens.user.js",
             "// @run-at       document-idle",
             "// @noframes",
-            "// @grant        none",
+            "// @grant        GM_registerMenuCommand",
             "// ==/UserScript==",
             "",
         ]
@@ -81,9 +83,17 @@ def userscript_text() -> str:
             "",
         ]
     )
+    project_menu = "\n".join(
+        [
+            "GM_registerMenuCommand(\"★ CCF Lens by Qirun Zeng — GitHub\", () => {",
+            "  window.open(\"https://github.com/qirunzeng/CCF-Lens-Safari\", \"_blank\", \"noopener,noreferrer\");",
+            "});",
+            "",
+        ]
+    )
     catalog = (ROOT / "WebExtension/catalog.js").read_text(encoding="utf-8")
     content = (ROOT / "WebExtension/content.js").read_text(encoding="utf-8")
-    return "\n".join(metadata) + style_loader + catalog + "\n" + content
+    return "\n".join(metadata) + style_loader + project_menu + catalog + "\n" + content
 
 
 def build(output_directory: Path) -> list[Path]:

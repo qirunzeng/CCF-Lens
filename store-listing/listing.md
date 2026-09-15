@@ -16,6 +16,8 @@ Show CCF 2026 venue ranks directly on Google Scholar, ACM Digital Library, IEEE 
 
 CCF Lens adds clear CCF A, B, and C badges beside publication venues while you browse Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP.
 
+Created by Qirun Zeng and developed openly on GitHub.
+
 Highlights:
 
 - Uses the official seventh-edition CCF 2026 catalog.

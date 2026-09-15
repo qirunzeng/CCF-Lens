@@ -1,6 +1,12 @@
 # CCF Lens for Safari, Chrome, Edge, and Tampermonkey
 
-CCF Lens is an independently implemented browser extension that labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
+[![CI](https://github.com/qirunzeng/CCF-Lens-Safari/actions/workflows/ci.yml/badge.svg)](https://github.com/qirunzeng/CCF-Lens-Safari/actions/workflows/ci.yml)
+[![GitHub stars](https://img.shields.io/github/stars/qirunzeng/CCF-Lens-Safari?style=social)](https://github.com/qirunzeng/CCF-Lens-Safari/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
+CCF Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
+
+If CCF Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/CCF-Lens-Safari) so more researchers can find it.
 
 ## Clean implementation
 

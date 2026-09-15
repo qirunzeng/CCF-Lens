@@ -33,9 +33,13 @@ class DistributionTests(unittest.TestCase):
         for archive_path in archives:
             with zipfile.ZipFile(archive_path) as archive:
                 self.assertIn("manifest.json", archive.namelist())
+                self.assertIn("WebExtension/popup.html", archive.namelist())
                 package = json.loads(archive.read("manifest.json"))
                 self.assertEqual(package["manifest_version"], 3)
                 self.assertEqual(package["name"], "CCF Lens")
+                self.assertEqual(
+                    package["action"]["default_popup"], "WebExtension/popup.html"
+                )
 
     def test_userscript_is_self_contained_and_updateable(self):
         userscript = (self.output / "ccf-lens.user.js").read_text(encoding="utf-8")
@@ -43,6 +47,8 @@ class DistributionTests(unittest.TestCase):
         self.assertIn("// @version      1.0.0", userscript)
         self.assertIn("// @updateURL    https://raw.githubusercontent.com/", userscript)
         self.assertNotIn("// @require", userscript)
+        self.assertIn("GM_registerMenuCommand", userscript)
+        self.assertIn("Qirun Zeng", userscript)
         self.assertIn("globalThis.CCFLensCatalog", userscript)
         self.assertIn("const findScholarMatches", userscript)
         self.assertIn("ccf-lens-badge", userscript)
