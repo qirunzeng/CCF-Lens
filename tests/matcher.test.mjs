@@ -87,6 +87,13 @@ test("matches TH-CPL SIGKDD through Scholar's KDD shorthand", () => {
   assert.deepEqual(venueSummary(api.findThScholarMatches("KDD'2026")), [["SIGKDD", "A"]]);
 });
 
+test("maps POMACS papers to the SIGMETRICS conference rankings", () => {
+  const venue = "Proceedings of the ACM on Measurement and Analysis of Computing Systems 5 (1), 1-24";
+  assert.deepEqual(venueSummary(api.findScholarMatches(venue)), [["SIG- METRICS", "B"]]);
+  assert.deepEqual(venueSummary(api.findCoreScholarMatches(venue)), [["SIGMETRICS", "A*"]]);
+  assert.deepEqual(venueSummary(api.findThScholarMatches(venue)), [["SIGMETRICS", "A"]]);
+});
+
 test("matches every official TH-CPL full name", () => {
   for (const entry of context.THCPLLensCatalog.entries) {
     const matches = api.findThMatches(entry.name);
@@ -176,6 +183,8 @@ for (const venue of [
 ]) {
   test(`does not confuse a non-listed publication with a CCF venue: ${venue}`, () => {
     assert.equal(api.findScholarMatches(venue).length, 0);
+    assert.equal(api.findCoreScholarMatches(venue).length, 0);
+    assert.equal(api.findThScholarMatches(venue).length, 0);
   });
 }
 
@@ -183,6 +192,7 @@ for (const venue of [
   "EMNLP'2026 Findings",
   "EMNLP 2026 Findings",
   "2017 IEEE conference on computer vision and pattern recognition workshops …",
+  "2021 IEEE International Conference on Communications Workshops (ICC Workshops), 1-6",
   "Companion Proceedings of the ACM Web Conference 2023, 648-658"
 ]) {
   test(`does not rank a non-full conference track: ${venue}`, () => {

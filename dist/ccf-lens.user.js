@@ -52,6 +52,7 @@ globalThis.THCPLLensCatalog = {"metadata":{"name":"清华大学计算机学科�
   ]);
   const scholarVenueAliases = [
     { phrase: "advances in neural information processing systems", abbreviation: "neurips", kind: "conference" },
+    { phrase: "acm on measurement and analysis of computing systems", abbreviation: "sigmetrics", kind: "conference" },
     { phrase: "conference on computer vision and pattern recognition", abbreviation: "cvpr", kind: "conference" },
     { phrase: "international conference on computer vision", abbreviation: "iccv", kind: "conference" },
     { phrase: "acm international conference on information", abbreviation: "cikm", kind: "conference" },
