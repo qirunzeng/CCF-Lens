@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CCF Lens
 // @namespace    https://github.com/qirunzeng/CCF-Lens-Safari
-// @version      1.0.0
+// @version      1.0.1
 // @description  Show CCF 2026 venue ranks on supported publication sites.
 // @author       Qirun Zeng
 // @license      MIT

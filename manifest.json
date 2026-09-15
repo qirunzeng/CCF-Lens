@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CCF Lens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 推荐等级。",
   "homepage_url": "https://github.com/qirunzeng/CCF-Lens-Safari",
   "action": {
