@@ -80,6 +80,9 @@ const scholarProfileCases = [
   ["2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2002-2011", "CVPR", "A"],
   ["Proceedings of the IEEE international conference on computer vision …", "ICCV", "A"],
   ["Advances in Neural Information Processing Systems 38, 164278-164339", "NeurIPS", "A"],
+  ["Proceedings of the 31st ACM International Conference on Information …", "CIKM", "B"],
+  ["Proceedings of the Twenty-Third International Symposium on Theory …", "MobiHoc", "B"],
+  ["2023 20th Annual IEEE International Conference on Sensing, Communication …", "SECON", "B"],
   ["Asia-Pacific Workshop on Networking, 2025", "APNet", "C"]
 ];
 
@@ -103,6 +106,15 @@ test("does not invent a CCF label for a non-catalog journal", () => {
 test("does not label arXiv entries", () => {
   assert.equal(api.findScholarMatches("arXiv preprint arXiv:2503.04550").length, 0);
 });
+
+for (const venue of [
+  "2021 55th Annual Conference on Information Sciences and Systems (CISS), 1-4",
+  "ACM SIGMETRICS Performance Evaluation Review 52 (1), 31-33"
+]) {
+  test(`does not confuse a non-listed publication with a CCF venue: ${venue}`, () => {
+    assert.equal(api.findScholarMatches(venue).length, 0);
+  });
+}
 
 for (const venue of [
   "EMNLP'2026 Findings",

@@ -10,7 +10,10 @@
   const scholarVenueAliases = [
     { phrase: "advances in neural information processing systems", abbreviation: "neurips", kind: "conference" },
     { phrase: "conference on computer vision and pattern recognition", abbreviation: "cvpr", kind: "conference" },
-    { phrase: "international conference on computer vision", abbreviation: "iccv", kind: "conference" }
+    { phrase: "international conference on computer vision", abbreviation: "iccv", kind: "conference" },
+    { phrase: "acm international conference on information", abbreviation: "cikm", kind: "conference" },
+    { phrase: "international symposium on theory", abbreviation: "mobihoc", kind: "conference" },
+    { phrase: "annual ieee international conference on sensing communication", abbreviation: "secon", kind: "conference" }
   ];
   const scholarIgnoredUppercaseTokens = new Set([
     "acm", "cvf", "ieee", "lncs"
@@ -120,15 +123,24 @@
       }
 
       const normalized = canonicalName(candidate).replace(/^(?:of|in) the\s+/u, "");
+      const conferenceContext = /\b(?:conference|symposium|proceedings|workshop|meeting)\b/iu.test(rawCandidate);
       // Scholar often wraps a real venue acronym in qualifiers such as
       // "Highlight" or "Long Paper". Match only all-uppercase
-      // catalog abbreviations and explicitly reject publisher/series tokens.
-      const abbreviationTokens = rawCandidate.match(/\b[A-Z][A-Z0-9-]{3,}\b/g) ?? [];
-      for (const token of abbreviationTokens) {
-        const key = canonicalAbbreviation(token);
-        if (scholarIgnoredUppercaseTokens.has(key)) continue;
-        const embedded = abbreviationIndex.get(key);
-        if (embedded?.length) return unique(embedded);
+      // catalog abbreviations in conference-shaped text and explicitly reject
+      // publisher/series tokens. This prevents journal titles such as ACM
+      // SIGMETRICS Performance Evaluation Review from inheriting the rank of
+      // the SIGMETRICS conference.
+      const qualifiedAcronymContext = conferenceContext
+        || Boolean(leadingAbbreviation)
+        || /\b(?:long paper|spotlight|highlight)\b/iu.test(rawCandidate);
+      if (qualifiedAcronymContext) {
+        const abbreviationTokens = rawCandidate.match(/\b[A-Z][A-Z0-9-]{3,}\b/g) ?? [];
+        for (const token of abbreviationTokens) {
+          const key = canonicalAbbreviation(token);
+          if (scholarIgnoredUppercaseTokens.has(key)) continue;
+          const embedded = abbreviationIndex.get(key);
+          if (embedded?.length) return unique(embedded);
+        }
       }
 
       // A small, explicit alias list covers Scholar's established display
@@ -144,6 +156,7 @@
       if (normalized.length < 20 || wordCount < 3) continue;
 
       const partial = unique(catalog.filter((entry) => {
+        if (conferenceContext && entry.kind !== "conference") return false;
         const name = canonicalName(entry.name);
         return name.includes(normalized) || normalized.includes(name);
       }));
