@@ -10,7 +10,7 @@
 		200A8DC976670B4634DA5B54 /* WebExtension in Resources */ = {isa = PBXBuildFile; fileRef = 819962CD6885CA6FA29833B8 /* WebExtension */; };
 		232103F36D609A796687F3EC /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE438F01035D6D589D668EA /* SafariExtensionHandler.swift */; };
 		433AC606748AE36A92FFBED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B0C58976065FB51EB9F7FE /* Assets.xcassets */; };
-		6DB59517187C47611906E2B3 /* CCF Lens Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6DB59517187C47611906E2B3 /* VenueRank Lens Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 078E8754FECBBEB7811FE7AA /* VenueRank Lens Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7985E5B300B4BD1107087EAC /* CCFLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462C0DE9A418AE302D42565A /* CCFLensApp.swift */; };
 		DE9E4CC994C537E5A63CB8E9 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = F71C9CAB46A9389F3BD0813C /* manifest.json */; };
 /* End PBXBuildFile section */
@@ -21,7 +21,7 @@
 			containerPortal = 903123CC27DC64F3F96F9653 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EE6E713260C71D4E473B9412;
-			remoteInfo = "CCF Lens Extension";
+			remoteInfo = "VenueRank Lens Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -32,7 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6DB59517187C47611906E2B3 /* CCF Lens Extension.appex in Embed Foundation Extensions */,
+				6DB59517187C47611906E2B3 /* VenueRank Lens Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,8 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CCF Lens Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		29D3965A7CC048948BCAAE97 /* CCF Lens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CCF Lens.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		078E8754FECBBEB7811FE7AA /* VenueRank Lens Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "VenueRank Lens Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D3965A7CC048948BCAAE97 /* VenueRank Lens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VenueRank Lens.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		462C0DE9A418AE302D42565A /* CCFLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCFLensApp.swift; sourceTree = "<group>"; };
 		819962CD6885CA6FA29833B8 /* WebExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WebExtension; path = ../WebExtension; sourceTree = SOURCE_ROOT; };
 		89B0C58976065FB51EB9F7FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,20 +60,20 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		4ABE42968EFE7E68DB843F82 /* CCF-Lens */ = {
+		4ABE42968EFE7E68DB843F82 /* VenueRank-Lens */ = {
 			isa = PBXGroup;
 			children = (
 				F71C9CAB46A9389F3BD0813C /* manifest.json */,
 			);
-			name = "CCF-Lens";
+			name = "VenueRank-Lens";
 			path = ..;
 			sourceTree = "<group>";
 		};
 		5AA8515986761BFCF67BE6B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */,
-				29D3965A7CC048948BCAAE97 /* CCF Lens.app */,
+				078E8754FECBBEB7811FE7AA /* VenueRank Lens Extension.appex */,
+				29D3965A7CC048948BCAAE97 /* VenueRank Lens.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,7 +83,7 @@
 			children = (
 				819962CD6885CA6FA29833B8 /* WebExtension */,
 				94207692004FA4229E1A8E5A /* App */,
-				4ABE42968EFE7E68DB843F82 /* CCF-Lens */,
+				4ABE42968EFE7E68DB843F82 /* VenueRank-Lens */,
 				21D485CFC1B6FF24482B18A3 /* Extension */,
 				5AA8515986761BFCF67BE6B7 /* Products */,
 			);
@@ -101,9 +101,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		77BA97C20A63BF4C09D091EB /* CCF Lens */ = {
+		77BA97C20A63BF4C09D091EB /* VenueRank Lens */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "CCF Lens" */;
+			buildConfigurationList = DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "VenueRank Lens" */;
 			buildPhases = (
 				CBA7816A957D2A00AEFB6A77 /* Sources */,
 				81E74638B93E0D3993451F23 /* Resources */,
@@ -114,16 +114,16 @@
 			dependencies = (
 				C56AF57F8228506585AB2E0E /* PBXTargetDependency */,
 			);
-			name = "CCF Lens";
+			name = "VenueRank Lens";
 			packageProductDependencies = (
 			);
-			productName = "CCF Lens";
-			productReference = 29D3965A7CC048948BCAAE97 /* CCF Lens.app */;
+			productName = "VenueRank Lens";
+			productReference = 29D3965A7CC048948BCAAE97 /* VenueRank Lens.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EE6E713260C71D4E473B9412 /* CCF Lens Extension */ = {
+		EE6E713260C71D4E473B9412 /* VenueRank Lens Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "CCF Lens Extension" */;
+			buildConfigurationList = 3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "VenueRank Lens Extension" */;
 			buildPhases = (
 				A43F601E719362BF422BDA99 /* Sources */,
 				3E00F70883D83826233863D3 /* Resources */,
@@ -132,11 +132,11 @@
 			);
 			dependencies = (
 			);
-			name = "CCF Lens Extension";
+			name = "VenueRank Lens Extension";
 			packageProductDependencies = (
 			);
-			productName = "CCF Lens Extension";
-			productReference = 078E8754FECBBEB7811FE7AA /* CCF Lens Extension.appex */;
+			productName = "VenueRank Lens Extension";
+			productReference = 078E8754FECBBEB7811FE7AA /* VenueRank Lens Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "CCF Lens" */;
+			buildConfigurationList = E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "VenueRank Lens" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -170,8 +170,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77BA97C20A63BF4C09D091EB /* CCF Lens */,
-				EE6E713260C71D4E473B9412 /* CCF Lens Extension */,
+				77BA97C20A63BF4C09D091EB /* VenueRank Lens */,
+				EE6E713260C71D4E473B9412 /* VenueRank Lens Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -218,7 +218,7 @@
 /* Begin PBXTargetDependency section */
 		C56AF57F8228506585AB2E0E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE6E713260C71D4E473B9412 /* CCF Lens Extension */;
+			target = EE6E713260C71D4E473B9412 /* VenueRank Lens Extension */;
 			targetProxy = CBD08D70DFF2FEA013EAC37C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -237,7 +237,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens.Extension;
-				PRODUCT_NAME = "CCF Lens Extension";
+				PRODUCT_NAME = "VenueRank Lens Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -383,7 +383,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qirunzeng.CCFLens.Extension;
-				PRODUCT_NAME = "CCF Lens Extension";
+				PRODUCT_NAME = "VenueRank Lens Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -398,7 +398,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "CCF Lens";
+				INFOPLIST_KEY_CFBundleDisplayName = "VenueRank Lens";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -418,7 +418,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "CCF Lens";
+				INFOPLIST_KEY_CFBundleDisplayName = "VenueRank Lens";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -432,7 +432,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "CCF Lens Extension" */ = {
+		3036ABC97A69B10AA2C9572F /* Build configuration list for PBXNativeTarget "VenueRank Lens Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CACC8CC23C197392DE4F3181 /* Debug */,
@@ -441,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "CCF Lens" */ = {
+		DE59824932F02EE31ED53307 /* Build configuration list for PBXNativeTarget "VenueRank Lens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBAE4F4DAA5F3FB2EE2C86B9 /* Debug */,
@@ -450,7 +450,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "CCF Lens" */ = {
+		E6E11B122F39DD5E3FCC4D62 /* Build configuration list for PBXProject "VenueRank Lens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C00C932D9C10245E4C9B50EB /* Debug */,

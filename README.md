@@ -1,12 +1,12 @@
-# CCF Lens for Safari, Chrome, Edge, and Tampermonkey
+# VenueRank Lens for Safari, Chrome, Edge, and Tampermonkey
 
-[![CI](https://github.com/qirunzeng/CCF-Lens/actions/workflows/ci.yml/badge.svg)](https://github.com/qirunzeng/CCF-Lens/actions/workflows/ci.yml)
-[![GitHub stars](https://img.shields.io/github/stars/qirunzeng/CCF-Lens?style=social)](https://github.com/qirunzeng/CCF-Lens/stargazers)
+[![CI](https://github.com/qirunzeng/VenueRank-Lens/actions/workflows/ci.yml/badge.svg)](https://github.com/qirunzeng/VenueRank-Lens/actions/workflows/ci.yml)
+[![GitHub stars](https://img.shields.io/github/stars/qirunzeng/VenueRank-Lens?style=social)](https://github.com/qirunzeng/VenueRank-Lens/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-CCF Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with both the CCF 2026 recommendation rank and the ICORE 2026 conference rank.
+VenueRank Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with both the CCF 2026 recommendation rank and the ICORE 2026 conference rank.
 
-If CCF Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/CCF-Lens) so more researchers can find it.
+If VenueRank Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/VenueRank-Lens) so more researchers can find it.
 
 ## Clean implementation
 
@@ -14,7 +14,7 @@ This repository has an independent Git history and does not contain source code,
 
 The ranking facts are extracted from the official 72-page CCF seventh-edition PDF and the official ICORE 2026 CSV export. CCF and ICORE remain the authoritative sources for their respective catalogs; the extension is not affiliated with or endorsed by either organization.
 
-ICORE 2026 ranks conferences only. Accordingly, CCF Lens never displays a CORE badge for a journal. The visible `CORE` badge is a compact label for data from the official ICORE 2026 conference ranking.
+ICORE 2026 ranks conferences only. Accordingly, VenueRank Lens never displays a CORE badge for a journal. The visible `CORE` badge is a compact label for data from the official ICORE 2026 conference ranking.
 
 On Google Scholar, the extension follows CCF's publication-scope rule: conference badges apply to full/regular papers. Findings, workshops, short papers, demos, technical briefs, summaries, and companion proceedings are deliberately not labeled as the ranked main conference.
 
@@ -22,15 +22,15 @@ On Google Scholar, the extension follows CCF's publication-scope rule: conferenc
 
 ### Chrome and Edge
 
-Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/CCF-Lens/releases). Store releases are prepared from the same Manifest V3 package.
+Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/VenueRank-Lens/releases). Store releases are prepared from the same Manifest V3 package.
 
 For local testing, extract the ZIP, open `chrome://extensions` or `edge://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted directory.
 
 ### Tampermonkey
 
-Install Tampermonkey, then use the public [CCF Lens page on Greasy Fork](https://greasyfork.org/en/scripts/595889-ccf-lens) for one-click installation and automatic updates.
+Install Tampermonkey, then use the public [VenueRank Lens page on Greasy Fork](https://greasyfork.org/en/scripts/595889-ccf-lens) for one-click installation and automatic updates.
 
-The [raw userscript on GitHub](https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js) remains available as a direct-install fallback.
+The [raw userscript on GitHub](https://raw.githubusercontent.com/qirunzeng/VenueRank-Lens/main/dist/ccf-lens.user.js) remains available as a direct-install fallback. The legacy filename is retained so existing direct installations can continue updating.
 
 ### Safari
 
@@ -47,10 +47,10 @@ Requirements:
 Run:
 
 ```bash
-open "Safari/CCF Lens.xcodeproj"
+open "Safari/VenueRank Lens.xcodeproj"
 ```
 
-The checked-in project selects Team ID `TC3755P2NZ` (Qirun Zeng Personal Team) for automatic signing. Other developers must select their own team for both targets. Run the `CCF Lens` scheme, then enable the extension in Safari Settings > Extensions.
+The checked-in project selects Team ID `TC3755P2NZ` (Qirun Zeng Personal Team) for automatic signing. Other developers must select their own team for both targets. Run the `VenueRank Lens` scheme, then enable the extension in Safari Settings > Extensions.
 
 XcodeGen is only required after editing `Safari/project.yml`:
 
@@ -65,8 +65,8 @@ Some file-provider-backed `Documents` folders add Finder metadata to newly creat
 
 ```bash
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
-  xcodebuild -project "Safari/CCF Lens.xcodeproj" \
-  -scheme "CCF Lens" -configuration Debug \
+  xcodebuild -project "Safari/VenueRank Lens.xcodeproj" \
+  -scheme "VenueRank Lens" -configuration Debug \
   -destination "platform=macOS,arch=arm64" \
   -derivedDataPath /private/tmp/ccf-lens-derived \
   DEVELOPMENT_TEAM=TC3755P2NZ CODE_SIGN_STYLE=Automatic \

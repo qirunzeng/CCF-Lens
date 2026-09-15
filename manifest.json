@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "CCF Lens",
+  "name": "VenueRank Lens",
   "version": "1.1.0",
   "description": "在 Google Scholar、ACM Digital Library、IEEE Xplore 和 DBLP 页面显示 CCF 2026 与 ICORE 2026 等级。",
-  "homepage_url": "https://github.com/qirunzeng/CCF-Lens",
+  "homepage_url": "https://github.com/qirunzeng/VenueRank-Lens",
   "action": {
-    "default_title": "CCF Lens",
+    "default_title": "VenueRank Lens",
     "default_popup": "WebExtension/popup.html"
   },
   "icons": {

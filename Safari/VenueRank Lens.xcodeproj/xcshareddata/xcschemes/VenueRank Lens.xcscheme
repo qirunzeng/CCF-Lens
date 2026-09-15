@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "77BA97C20A63BF4C09D091EB"
-               BuildableName = "CCF Lens.app"
-               BlueprintName = "CCF Lens"
-               ReferencedContainer = "container:CCF Lens.xcodeproj">
+               BuildableName = "VenueRank Lens.app"
+               BlueprintName = "VenueRank Lens"
+               ReferencedContainer = "container:VenueRank Lens.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE6E713260C71D4E473B9412"
-               BuildableName = "CCF Lens Extension.appex"
-               BlueprintName = "CCF Lens Extension"
-               ReferencedContainer = "container:CCF Lens.xcodeproj">
+               BuildableName = "VenueRank Lens Extension.appex"
+               BlueprintName = "VenueRank Lens Extension"
+               ReferencedContainer = "container:VenueRank Lens.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77BA97C20A63BF4C09D091EB"
-            BuildableName = "CCF Lens.app"
-            BlueprintName = "CCF Lens"
-            ReferencedContainer = "container:CCF Lens.xcodeproj">
+            BuildableName = "VenueRank Lens.app"
+            BlueprintName = "VenueRank Lens"
+            ReferencedContainer = "container:VenueRank Lens.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77BA97C20A63BF4C09D091EB"
-            BuildableName = "CCF Lens.app"
-            BlueprintName = "CCF Lens"
-            ReferencedContainer = "container:CCF Lens.xcodeproj">
+            BuildableName = "VenueRank Lens.app"
+            BlueprintName = "VenueRank Lens"
+            ReferencedContainer = "container:VenueRank Lens.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -89,9 +89,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77BA97C20A63BF4C09D091EB"
-            BuildableName = "CCF Lens.app"
-            BlueprintName = "CCF Lens"
-            ReferencedContainer = "container:CCF Lens.xcodeproj">
+            BuildableName = "VenueRank Lens.app"
+            BlueprintName = "VenueRank Lens"
+            ReferencedContainer = "container:VenueRank Lens.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

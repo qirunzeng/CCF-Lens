@@ -36,8 +36,8 @@ jobs:
       - uses: actions/checkout@v5
       - run: >-
           xcodebuild
-          -project "Safari/CCF Lens.xcodeproj"
-          -scheme "CCF Lens"
+          -project "Safari/VenueRank Lens.xcodeproj"
+          -scheme "VenueRank Lens"
           -configuration Debug
           -derivedDataPath "$RUNNER_TEMP/CCFLensDerivedData"
           CODE_SIGNING_ALLOWED=NO

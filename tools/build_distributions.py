@@ -51,8 +51,8 @@ def userscript_text() -> str:
     matches = package["content_scripts"][0]["matches"]
     metadata = [
         "// ==UserScript==",
-        "// @name         CCF Lens",
-        "// @namespace    https://github.com/qirunzeng/CCF-Lens",
+        "// @name         VenueRank Lens",
+        "// @namespace    https://github.com/qirunzeng/VenueRank-Lens",
         f"// @version      {version}",
         "// @description  Show CCF 2026 and ICORE 2026 venue ranks on supported publication sites.",
         "// @author       Qirun Zeng",
@@ -61,10 +61,10 @@ def userscript_text() -> str:
     metadata.extend(f"// @match        {pattern}" for pattern in matches)
     metadata.extend(
         [
-            "// @homepageURL  https://github.com/qirunzeng/CCF-Lens",
-            "// @supportURL   https://github.com/qirunzeng/CCF-Lens/issues",
-            "// @downloadURL  https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js",
-            "// @updateURL    https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js",
+            "// @homepageURL  https://github.com/qirunzeng/VenueRank-Lens",
+            "// @supportURL   https://github.com/qirunzeng/VenueRank-Lens/issues",
+            "// @downloadURL  https://raw.githubusercontent.com/qirunzeng/VenueRank-Lens/main/dist/ccf-lens.user.js",
+            "// @updateURL    https://raw.githubusercontent.com/qirunzeng/VenueRank-Lens/main/dist/ccf-lens.user.js",
             "// @run-at       document-idle",
             "// @noframes",
             "// @grant        GM_registerMenuCommand",
@@ -86,8 +86,8 @@ def userscript_text() -> str:
     )
     project_menu = "\n".join(
         [
-            "GM_registerMenuCommand(\"★ CCF Lens by Qirun Zeng — GitHub\", () => {",
-            "  window.open(\"https://github.com/qirunzeng/CCF-Lens\", \"_blank\", \"noopener,noreferrer\");",
+            "GM_registerMenuCommand(\"★ VenueRank Lens by Qirun Zeng — GitHub\", () => {",
+            "  window.open(\"https://github.com/qirunzeng/VenueRank-Lens\", \"_blank\", \"noopener,noreferrer\");",
             "});",
             "",
         ]
@@ -111,8 +111,8 @@ def build(output_directory: Path) -> list[Path]:
     output_directory.mkdir(parents=True, exist_ok=True)
     version = manifest()["version"]
     outputs = [
-        output_directory / f"ccf-lens-chrome-{version}.zip",
-        output_directory / f"ccf-lens-edge-{version}.zip",
+        output_directory / f"venuerank-lens-chrome-{version}.zip",
+        output_directory / f"venuerank-lens-edge-{version}.zip",
     ]
     for destination in outputs:
         write_chromium_zip(destination)

@@ -16,7 +16,7 @@ struct CCFLensApp: App {
 private struct SetupView: View {
     private let extensionIdentifier = "com.qirunzeng.CCFLens.Extension"
 
-    @State private var message = "启用后，CCF Lens 会在 Google Scholar、ACM、IEEE Xplore 和 DBLP 的刊物名称旁显示 CCF 等级。"
+    @State private var message = "启用后，VenueRank Lens 会在 Google Scholar、ACM、IEEE Xplore 和 DBLP 的刊物名称旁显示 CCF 与 CORE 等级。"
     @State private var isEnabled = false
 
     var body: some View {
@@ -26,7 +26,7 @@ private struct SetupView: View {
                 .scaledToFit()
                 .frame(width: 72, height: 72)
 
-            Text("CCF Lens")
+            Text("VenueRank Lens")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
 
             Text(message)
@@ -64,7 +64,7 @@ private struct SetupView: View {
                 guard let state else { return }
                 isEnabled = state.isEnabled
                 if state.isEnabled {
-                    message = "CCF Lens 已在 Safari 中启用。你可以在这里管理扩展设置。"
+                    message = "VenueRank Lens 已在 Safari 中启用。你可以在这里管理扩展设置。"
                 }
             }
         }
@@ -74,7 +74,7 @@ private struct SetupView: View {
         guard let safariURL = NSWorkspace.shared.urlForApplication(
             withBundleIdentifier: "com.apple.Safari"
         ) else {
-            message = "请打开 Safari，然后前往 Safari → 设置 → 扩展，启用 CCF Lens。"
+            message = "请打开 Safari，然后前往 Safari → 设置 → 扩展，启用 VenueRank Lens。"
             return
         }
 
@@ -84,6 +84,6 @@ private struct SetupView: View {
             at: safariURL,
             configuration: configuration
         ) { _, _ in }
-        message = "Safari 已打开。请前往 Safari → 设置 → 扩展，启用 CCF Lens。"
+        message = "Safari 已打开。请前往 Safari → 设置 → 扩展，启用 VenueRank Lens。"
     }
 }

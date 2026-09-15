@@ -28,7 +28,7 @@ class DistributionTests(unittest.TestCase):
         archives = [path for path in self.artifacts if path.suffix == ".zip"]
         self.assertEqual(
             {path.name for path in archives},
-            {"ccf-lens-chrome-1.1.0.zip", "ccf-lens-edge-1.1.0.zip"},
+            {"venuerank-lens-chrome-1.1.0.zip", "venuerank-lens-edge-1.1.0.zip"},
         )
         for archive_path in archives:
             with zipfile.ZipFile(archive_path) as archive:
@@ -37,7 +37,7 @@ class DistributionTests(unittest.TestCase):
                 self.assertIn("WebExtension/core_catalog.js", archive.namelist())
                 package = json.loads(archive.read("manifest.json"))
                 self.assertEqual(package["manifest_version"], 3)
-                self.assertEqual(package["name"], "CCF Lens")
+                self.assertEqual(package["name"], "VenueRank Lens")
                 self.assertEqual(
                     package["action"]["default_popup"], "WebExtension/popup.html"
                 )
@@ -50,6 +50,7 @@ class DistributionTests(unittest.TestCase):
         self.assertNotIn("// @require", userscript)
         self.assertIn("GM_registerMenuCommand", userscript)
         self.assertIn("Qirun Zeng", userscript)
+        self.assertIn("// @name         VenueRank Lens", userscript)
         self.assertIn("globalThis.CCFLensCatalog", userscript)
         self.assertIn("globalThis.CORELensCatalog", userscript)
         self.assertIn("const findScholarMatches", userscript)

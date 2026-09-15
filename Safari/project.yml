@@ -1,4 +1,4 @@
-name: CCF Lens
+name: VenueRank Lens
 options:
   bundleIdPrefix: com.qirunzeng
   deploymentTarget:
@@ -11,7 +11,7 @@ settings:
     MARKETING_VERSION: "1.1.0"
     SWIFT_VERSION: "5.0"
 targets:
-  CCF Lens:
+  VenueRank Lens:
     type: application
     platform: macOS
     sources:
@@ -23,13 +23,13 @@ targets:
         INFOPLIST_FILE: App/Info.plist
         ENABLE_APP_SANDBOX: YES
         ENABLE_HARDENED_RUNTIME: YES
-        INFOPLIST_KEY_CFBundleDisplayName: CCF Lens
+        INFOPLIST_KEY_CFBundleDisplayName: VenueRank Lens
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     dependencies:
-      - target: CCF Lens Extension
+      - target: VenueRank Lens Extension
         embed: true
-  CCF Lens Extension:
+  VenueRank Lens Extension:
     type: app-extension
     platform: macOS
     sources:
@@ -40,7 +40,7 @@ targets:
     info:
       path: Extension/Info.plist
       properties:
-        CFBundleDisplayName: CCF Lens
+        CFBundleDisplayName: VenueRank Lens
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
@@ -49,15 +49,15 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.qirunzeng.CCFLens.Extension
-        PRODUCT_NAME: CCF Lens Extension
+        PRODUCT_NAME: VenueRank Lens Extension
         ENABLE_APP_SANDBOX: YES
         ENABLE_HARDENED_RUNTIME: YES
         SKIP_INSTALL: YES
 schemes:
-  CCF Lens:
+  VenueRank Lens:
     build:
       targets:
-        CCF Lens: all
-        CCF Lens Extension: all
+        VenueRank Lens: all
+        VenueRank Lens Extension: all
     run:
       config: Debug
