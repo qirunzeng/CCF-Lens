@@ -42,8 +42,8 @@ The extension does not collect, store, sell, or transmit user data. It does not 
 
 ## Support URL
 
-https://github.com/qirunzeng/CCF-Lens-Safari/issues
+https://github.com/qirunzeng/CCF-Lens/issues
 
 ## Privacy policy URL
 
-https://github.com/qirunzeng/CCF-Lens-Safari/blob/main/PRIVACY.md
+https://github.com/qirunzeng/CCF-Lens/blob/main/PRIVACY.md

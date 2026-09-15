@@ -1,12 +1,12 @@
 # CCF Lens for Safari, Chrome, Edge, and Tampermonkey
 
-[![CI](https://github.com/qirunzeng/CCF-Lens-Safari/actions/workflows/ci.yml/badge.svg)](https://github.com/qirunzeng/CCF-Lens-Safari/actions/workflows/ci.yml)
-[![GitHub stars](https://img.shields.io/github/stars/qirunzeng/CCF-Lens-Safari?style=social)](https://github.com/qirunzeng/CCF-Lens-Safari/stargazers)
+[![CI](https://github.com/qirunzeng/CCF-Lens/actions/workflows/ci.yml/badge.svg)](https://github.com/qirunzeng/CCF-Lens/actions/workflows/ci.yml)
+[![GitHub stars](https://img.shields.io/github/stars/qirunzeng/CCF-Lens?style=social)](https://github.com/qirunzeng/CCF-Lens/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 CCF Lens is an independently implemented browser extension by [Qirun Zeng](https://github.com/qirunzeng). It labels venues on Google Scholar, ACM Digital Library, IEEE Xplore, and DBLP with the 2026 CCF recommendation rank.
 
-If CCF Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/CCF-Lens-Safari) so more researchers can find it.
+If CCF Lens saves you time, consider [starring the repository](https://github.com/qirunzeng/CCF-Lens) so more researchers can find it.
 
 ## Clean implementation
 
@@ -20,13 +20,13 @@ On Google Scholar, the extension follows CCF's publication-scope rule: conferenc
 
 ### Chrome and Edge
 
-Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/CCF-Lens-Safari/releases). Store releases are prepared from the same Manifest V3 package.
+Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/CCF-Lens/releases). Store releases are prepared from the same Manifest V3 package.
 
 For local testing, extract the ZIP, open `chrome://extensions` or `edge://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted directory.
 
 ### Tampermonkey
 
-Install Tampermonkey, then open the [CCF Lens userscript](https://raw.githubusercontent.com/qirunzeng/CCF-Lens-Safari/main/dist/ccf-lens.user.js). The userscript is self-contained and checks this URL for updates.
+Install Tampermonkey, then open the [CCF Lens userscript](https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js). The userscript is self-contained and checks this URL for updates.
 
 ### Safari
 

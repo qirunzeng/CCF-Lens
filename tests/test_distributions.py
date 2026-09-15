@@ -28,7 +28,7 @@ class DistributionTests(unittest.TestCase):
         archives = [path for path in self.artifacts if path.suffix == ".zip"]
         self.assertEqual(
             {path.name for path in archives},
-            {"ccf-lens-chrome-1.0.1.zip", "ccf-lens-edge-1.0.1.zip"},
+            {"ccf-lens-chrome-1.0.2.zip", "ccf-lens-edge-1.0.2.zip"},
         )
         for archive_path in archives:
             with zipfile.ZipFile(archive_path) as archive:
@@ -44,7 +44,7 @@ class DistributionTests(unittest.TestCase):
     def test_userscript_is_self_contained_and_updateable(self):
         userscript = (self.output / "ccf-lens.user.js").read_text(encoding="utf-8")
         self.assertIn("// ==UserScript==", userscript)
-        self.assertIn("// @version      1.0.1", userscript)
+        self.assertIn("// @version      1.0.2", userscript)
         self.assertIn("// @updateURL    https://raw.githubusercontent.com/", userscript)
         self.assertNotIn("// @require", userscript)
         self.assertIn("GM_registerMenuCommand", userscript)

@@ -51,7 +51,7 @@ def userscript_text() -> str:
     metadata = [
         "// ==UserScript==",
         "// @name         CCF Lens",
-        "// @namespace    https://github.com/qirunzeng/CCF-Lens-Safari",
+        "// @namespace    https://github.com/qirunzeng/CCF-Lens",
         f"// @version      {version}",
         "// @description  Show CCF 2026 venue ranks on supported publication sites.",
         "// @author       Qirun Zeng",
@@ -60,10 +60,10 @@ def userscript_text() -> str:
     metadata.extend(f"// @match        {pattern}" for pattern in matches)
     metadata.extend(
         [
-            "// @homepageURL  https://github.com/qirunzeng/CCF-Lens-Safari",
-            "// @supportURL   https://github.com/qirunzeng/CCF-Lens-Safari/issues",
-            "// @downloadURL  https://raw.githubusercontent.com/qirunzeng/CCF-Lens-Safari/main/dist/ccf-lens.user.js",
-            "// @updateURL    https://raw.githubusercontent.com/qirunzeng/CCF-Lens-Safari/main/dist/ccf-lens.user.js",
+            "// @homepageURL  https://github.com/qirunzeng/CCF-Lens",
+            "// @supportURL   https://github.com/qirunzeng/CCF-Lens/issues",
+            "// @downloadURL  https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js",
+            "// @updateURL    https://raw.githubusercontent.com/qirunzeng/CCF-Lens/main/dist/ccf-lens.user.js",
             "// @run-at       document-idle",
             "// @noframes",
             "// @grant        GM_registerMenuCommand",
@@ -86,7 +86,7 @@ def userscript_text() -> str:
     project_menu = "\n".join(
         [
             "GM_registerMenuCommand(\"★ CCF Lens by Qirun Zeng — GitHub\", () => {",
-            "  window.open(\"https://github.com/qirunzeng/CCF-Lens-Safari\", \"_blank\", \"noopener,noreferrer\");",
+            "  window.open(\"https://github.com/qirunzeng/CCF-Lens\", \"_blank\", \"noopener,noreferrer\");",
             "});",
             "",
         ]

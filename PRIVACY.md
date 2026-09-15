@@ -13,4 +13,4 @@ The extension runs only on these sites:
 - IEEE Xplore (`ieeexplore.ieee.org`)
 - DBLP (`dblp.org` and `dblp.uni-trier.de`)
 
-Questions or reports can be submitted through the [GitHub issue tracker](https://github.com/qirunzeng/CCF-Lens-Safari/issues).
+Questions or reports can be submitted through the [GitHub issue tracker](https://github.com/qirunzeng/CCF-Lens/issues).
