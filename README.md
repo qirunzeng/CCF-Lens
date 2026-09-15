@@ -30,7 +30,7 @@ For local testing, extract the ZIP, open `chrome://extensions` or `edge://extens
 
 ### Tampermonkey
 
-Install Tampermonkey, then use the public [VenueRank Lens page on Greasy Fork](https://greasyfork.org/en/scripts/595889-ccf-lens) for one-click installation and automatic updates.
+Install Tampermonkey, then use the public [VenueRank Lens page on Greasy Fork](https://greasyfork.org/en/scripts/595904-venuerank-lens) for one-click installation and automatic updates.
 
 The [raw userscript on GitHub](https://raw.githubusercontent.com/qirunzeng/VenueRank-Lens/main/dist/ccf-lens.user.js) remains available as a direct-install fallback. The legacy filename is retained so existing direct installations can continue updating.
 
