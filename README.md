@@ -22,11 +22,17 @@ On Google Scholar, the extension follows CCF's publication-scope rule: conferenc
 
 ## Install
 
-### Chrome and Edge
+### Chrome
 
-Download the matching ZIP from [GitHub Releases](https://github.com/qirunzeng/VenueRank-Lens/releases). Store releases are prepared from the same Manifest V3 package.
+Install [VenueRank Lens from the Chrome Web Store](https://chromewebstore.google.com/detail/venuerank-lens/gnkaofeegcepjgadcdpajhfeopdcjgnl) for one-click installation and automatic updates.
 
-For local testing, extract the ZIP, open `chrome://extensions` or `edge://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted directory.
+### Edge
+
+Download the Edge ZIP from [GitHub Releases](https://github.com/qirunzeng/VenueRank-Lens/releases). Store releases are prepared from the same Manifest V3 package.
+
+### Local Chrome or Edge testing
+
+For local testing, extract the matching ZIP, open `chrome://extensions` or `edge://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted directory.
 
 ### Tampermonkey
 
