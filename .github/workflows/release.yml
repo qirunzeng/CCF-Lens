@@ -26,9 +26,11 @@ jobs:
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: >-
-          gh release create "$GITHUB_REF_NAME"
-          dist/ccf-lens-chrome-*.zip
-          dist/ccf-lens-edge-*.zip
-          dist/ccf-lens.user.js
-          --generate-notes
+        run: |
+          VERSION="$(python -c 'import json; print(json.load(open("manifest.json"))["version"])')"
+          test "$GITHUB_REF_NAME" = "v$VERSION"
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/venuerank-lens-chrome-$VERSION.zip" \
+            "dist/venuerank-lens-edge-$VERSION.zip" \
+            dist/ccf-lens.user.js \
+            --generate-notes
